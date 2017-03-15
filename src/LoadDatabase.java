@@ -15,7 +15,7 @@ public class LoadDatabase {
     public static final String DBNAME = "TRENINGSDB";
     public static final String SSL = "&autoReconnect=true&useSSL=false";
     public static final String USER = "?user=root";
-    public static final String PW = "&password=qqq";
+    public static final String PW = "&password=tsm121";
     public static final String HIDDENPW = "&password=*************";
     Connection conn = null;
     Statement state = null;
