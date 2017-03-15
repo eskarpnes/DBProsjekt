@@ -1,6 +1,13 @@
 import com.sun.corba.se.impl.orb.DataCollectorBase;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public class LoadDatabase {
     public static final String JDBC = "com.mysql.jdbc.Driver";
@@ -31,6 +38,35 @@ public class LoadDatabase {
             System.out.println("..Not connected");
             this.createDatabase();
             tables = new DatabaseTables(this.conn,DBNAME);
+        }
+
+    }
+    public void readFiles(){
+        File directory = new File("./db_testdata");
+        ArrayList<File> files = new ArrayList<>();
+        File[]seed_data = directory.listFiles();
+        for (File file:seed_data){
+            if (file.isFile()){
+                files.add(file);
+            }
+        }
+        //            System.out.println(file.getName());
+
+        for (File file:files) {
+            try (Stream<String> seed_lines = Files.lines(Paths.get(file.getPath()))) {
+                seed_lines.forEach(s-> this.addSql(s));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private void addSql(String s){
+        try {
+            this.state = this.conn.createStatement();
+            this.state.executeUpdate(s);
+            this.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
     }
