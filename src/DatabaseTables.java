@@ -1,7 +1,10 @@
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * used in the creation of a new database
@@ -29,12 +32,9 @@ public class DatabaseTables {
             System.out.println("Failed to add all tables");
         }
     }
-    public
     private void clear(){
         if (sql != null){
-            sql = "";UPDATE mysql.user SET Password=PASSWORD('your-password') WHERE User='root';
-
-
+            sql = "";
         }
         if (state != null){
             try{
@@ -44,6 +44,7 @@ public class DatabaseTables {
             }
         }
     }
+
     private void apply(String query) throws SQLException {
         System.out.println("Applying query");
         this.state = this.conn.createStatement();
@@ -99,6 +100,7 @@ public class DatabaseTables {
                 "workload INT DEFAULT NULL," +
                 "reps TINYINT NOT NULL," +
                 "sets TINYINT NOT NULL," +
+                "connected_exercise_id INT NOT NULL,"+
                 "FOREIGN KEY (id) REFERENCES workout(workout_no))";
         try {
             this.apply(sql);
@@ -141,7 +143,7 @@ public class DatabaseTables {
         sql = "CREATE TABLE exercise_data(" +
                 "id INT NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                 "time_stamp TIME DEFAULT NULL," +
-                "heart_rate TINYINT(3) DEFAULT NULL," +
+                "heart_rate INT UNSIGNED DEFAULT NULL," +
                 "lat_coord FLOAT DEFAULT NULL," +
                 "long_coord FLOAT DEFAULT NULL," +
                 "msl FLOAT DEFAULT NULL," +

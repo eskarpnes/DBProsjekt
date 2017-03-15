@@ -13,11 +13,12 @@ public class Main {
     public Main() {
         try {
             db = new LoadDatabase();
+            db.readFiles();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        getUserFunction();
 
+//        getUserFunction();
     }
 
     public void getUserFunction() {
@@ -66,7 +67,7 @@ public class Main {
         sqlwo.fetch(" WHERE workout_date > '" + dateString + "'");
         ArrayList<Workout> workouts = sqlwo.getResults();
         for (Workout workout : workouts) {
-            sqlres.fetch(workout.id);
+            sqlres.fetch(workout.wo_num);
             ArrayList<Result> results = sqlres.getResults();
             workout.addResults(results);
         }
@@ -96,7 +97,7 @@ public class Main {
         SQL_Result sqlres = new SQL_Result(db);
         String dateString = tool.getDate(30);
         sqlwo.fetch(" WHERE workout_date > '" + dateString + "'");
-        ArrayList<Workout> workouts = sqlwo.getResults();
+        ArrayList<Workout> workouts = sqlwo.getWorkouts();
         System.out.println("Total amount of workouts: " + workouts.size());
         int total = 0;
         int volume = 0;
