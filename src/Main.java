@@ -27,12 +27,12 @@ public class Main {
             System.out.println("");
             System.out.println("Which function do you want to use?");
             System.out.println("Input workout | Best workout | Statistics");
-            input = tool.getStringInput("");
-            if (input.trim().toLowerCase().equals("tool workout")) {
+            input = tool.getStringInput("").trim().toLowerCase();
+            if (input.equals("input workout")) {
                 inputWorkout();
-            } else if (input.trim().toLowerCase().equals("best workout")) {
+            } else if (input.equals("best workout")) {
                 bestWorkout();
-            } else if (input.trim().toLowerCase().equals("statistics")) {
+            } else if (input.equals("statistics")) {
                 statistics();
             } else if (!input.equals("quit")){
                 System.out.println("Not a valid tool");

@@ -3,13 +3,13 @@
  */
 public class Note {
 
-    Tool in = new Tool();
+    Tool tool = new Tool();
 
     private String purpose, tips;
 
     public Note() {
-        this.purpose = in.getStringInput("What was the purpose of this workout?");
-        this.tips = in.getStringInput("What is the tips from this workout?");
+        this.purpose = tool.getStringInput("What was the purpose of this workout?");
+        this.tips = tool.getStringInput("What is the tips from this workout?");
     }
 
     public Note(String purpose, String tips){
