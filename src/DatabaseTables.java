@@ -29,9 +29,12 @@ public class DatabaseTables {
             System.out.println("Failed to add all tables");
         }
     }
+    public
     private void clear(){
         if (sql != null){
-            sql = "";
+            sql = "";UPDATE mysql.user SET Password=PASSWORD('your-password') WHERE User='root';
+
+
         }
         if (state != null){
             try{

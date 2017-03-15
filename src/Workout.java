@@ -40,7 +40,7 @@ public class Workout {
     }
 
     public void getUserInput() {
-        this.duration = tool.getIntInput("Input duration tool minutes");
+        this.duration = tool.getIntInput("Input duration in minutes");
         this.shape = tool.getIntInput("Input shape from 1-10");
         this.performance = tool.getIntInput("Input performance from 1-10");
     }

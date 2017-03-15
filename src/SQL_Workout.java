@@ -49,7 +49,7 @@ public class SQL_Workout {
     public void insert(String s) {
         try {
             state = this.db.conn.createStatement();
-            String sql = "INSERT INTO workout VALUES " + s; // s = "(1, 15.03.2017, 15.15, 45, null, null)"
+            String sql = "INSERT INTO workout VALUES " + s; // s = "(15.03.2017, 15.15, 45, null, null)"
             result = state.executeQuery(sql);
         } catch (SQLException ex) {
             this.db.SQLEx(ex);

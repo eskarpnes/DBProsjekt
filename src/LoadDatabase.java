@@ -26,7 +26,7 @@ public class LoadDatabase {
             ex.printStackTrace();
             System.out.println("Failed connection.");
         }
-        System.out.println("Connected? "+this.connected);
+//        System.out.println("Connected? "+this.connected);
         if (!this.connected){
             System.out.println("..Not connected");
             this.createDatabase();
