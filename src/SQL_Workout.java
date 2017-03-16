@@ -46,12 +46,23 @@ public class SQL_Workout {
         }
     }
 
-    public void insert(String s) {
+    public void insert(String date, String time, int duration, int shape, int perf) {
+        StringBuilder sb = new StringBuilder(0);
+        sb.append("insert into workout ");
+        sb.append("values (null, ");
+        sb.append("'"); sb.append(date); sb.append("', ");
+        sb.append("'"); sb.append(time); sb.append("', ");
+        sb.append(duration); sb.append(",");
+        sb.append(shape); sb.append(",");
+        sb.append(perf); sb.append(");");
+        String sql = sb.toString();
+        System.out.println(sql);
         try {
             state = this.db.conn.createStatement();
-            String sql = "INSERT INTO workout VALUES " + s; // s = "(15.03.2017, 15.15, 45, null, null)"
-            result = state.executeQuery(sql);
+            int res = state.executeUpdate(sql);
+            if (res==1) System.out.println("Successfully added query into workout");
         } catch (SQLException ex) {
+            System.out.println("Failed adding data into workout");
             this.db.SQLEx(ex);
         } finally {
             this.db.close();

@@ -54,6 +54,7 @@ public class Main {
     public void inputWorkout() {
         String input;
         Workout workout = new Workout();
+        workout.insert_sql(this.db);
         input = tool.getStringInput("Do you want to add a note?");
         if (input.toLowerCase().equals("yes")||input.toLowerCase().equals("y")) {
            workout.addNote();
