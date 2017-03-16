@@ -59,10 +59,10 @@ public class Result {
         this.workout_id = workout_id;
     }
 
-    public void insert_sql(LoadDatabase db,int workoutID){
+    public void insert_sql(LoadDatabase db){
         SQL_Result insertion = new SQL_Result(db);
         insertion.insert(this.description,this.goal,this.workload,
-                this.reps,this.sets,0,workoutID);
+                this.reps,this.sets,0,this.workout_id);
     }
     private void addWorkoutData() {
 

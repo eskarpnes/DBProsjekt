@@ -55,6 +55,7 @@ public class Main {
         String input;
         Workout workout = new Workout();
         workout.insert_sql(this.db);
+        int currentWorkoutID = workout.getWorkoutID(this.db);
         input = tool.getStringInput("Do you want to add a note?");
         if (input.toLowerCase().equals("yes")||input.toLowerCase().equals("y")) {
             Note note = new Note();
@@ -64,8 +65,8 @@ public class Main {
         int num = tool.getIntInput("How many exercises did you do?");
         for (int i = 0; i<num; i++) {
             System.out.println("Inputting exercise number " + Integer.toString(i+1));
-            Result result = new Result(workout.getWorkoutID());
-            result.insert_sql(this.db,workout.getWorkoutID());
+            Result result = new Result(currentWorkoutID);
+            result.insert_sql(this.db);
             workout.addResult(result);
         }
     }

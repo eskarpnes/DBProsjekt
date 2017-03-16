@@ -69,6 +69,20 @@ public class SQL_Workout {
         }
     }
 
+    public int getWorkoutID(){
+        try {
+            this.state = this.db.conn.createStatement();
+            ResultSet results = this.state.executeQuery(
+                    "SELECT workout_no FROM workout");
+            int colCount = results.getMetaData().getColumnCount();
+            System.out.println("Current workout ID: "+colCount);
+            return colCount;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
     public ArrayList<Workout> getResults() {
         return this.workouts;
     }

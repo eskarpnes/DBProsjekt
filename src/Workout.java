@@ -31,9 +31,9 @@ public class Workout {
         insertion.insert(this._date,this._time,this.duration,this.shape,this.performance);
     }
 
-    public int getWorkoutID(){
-        System.out.println("Retrieving workout #"+Integer.toString(this.wo_num));
-        return this.wo_num;
+    public int getWorkoutID(LoadDatabase db){
+        SQL_Workout getID = new SQL_Workout(db);
+        return getID.getWorkoutID();
     }
 
     public void addNote(Note note) {
