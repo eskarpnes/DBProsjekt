@@ -93,7 +93,6 @@ public class Main {
                 _maxw = entry.getKey();
             }
         }
-
         System.out.println("Your best workout was: ");
         _maxw.toString();
         System.out.println("With a total volume of " + Integer.toString(_max));
@@ -111,7 +110,7 @@ public class Main {
         int total = 0;
         int volume = 0;
         for (Workout workout : workouts) {
-            sqlres.fetch(workout.id);
+            sqlres.fetch(workout.wo_num);
             workout.addResults(sqlres.getResults());
             total += workout.duration;
             volume += workout.getTotal();
