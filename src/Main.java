@@ -13,17 +13,20 @@ public class Main {
     LoadDatabase db = null;
     public Main() {
         System.out.print("Enter MySQL pw: ");
-        Scanner getpw = new Scanner(System.in);
-        String pw = getpw.next();
+        Scanner input = new Scanner(System.in);
+        String pw = input.next();
 
         try {
             db = new LoadDatabase(pw);
-            db.readFiles();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-//        getUserFunction();
+        System.out.println("Seed database?(y/n) ");
+        input = new Scanner(System.in);
+        if (input.next().toLowerCase().equals("y")){
+            db.readFiles();
+        }
+        getUserFunction();
     }
 
     public void getUserFunction() {
