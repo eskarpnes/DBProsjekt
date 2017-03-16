@@ -15,15 +15,17 @@ public class LoadDatabase {
     public static final String DBNAME = "TRENINGSDB";
     public static final String SSL = "&autoReconnect=true&useSSL=false";
     public static final String USER = "?user=root";
-    public static final String PW = "&password=tsm121";
+    public static final String PW = "&password=";
     public static final String HIDDENPW = "&password=*************";
     Connection conn = null;
     Statement state = null;
     ResultSet result = null;
     private boolean connected = true;
     private DatabaseTables tables = null;
+    private String pw = null;
 
-    public LoadDatabase() throws SQLException {
+    public LoadDatabase(String pw) throws SQLException {
+        this.pw = pw;
         try {
             Class.forName(JDBC).newInstance();
             System.out.println("Attempting MySQL Connection to "+DBNAME);
@@ -83,7 +85,7 @@ public class LoadDatabase {
     private void connect(){
         try {
             System.out.println("......");
-            String connectionQuery = DB+DBNAME+USER+PW+SSL;
+            String connectionQuery = DB+DBNAME+USER+PW+pw+SSL;
             System.out.println("Using url: "+DB+DBNAME+USER+HIDDENPW+SSL);
             this.conn = DriverManager.getConnection(connectionQuery);
             System.out.println("Connected to Database "+DBNAME);
@@ -98,7 +100,7 @@ public class LoadDatabase {
         try {
             Class.forName(JDBC);
             System.out.println("Connecting to new database...");
-            String connectionQuery = DB+USER+PW+SSL;
+            String connectionQuery = DB+USER+PW+pw+SSL;
             System.out.println("Using url: "+DB+USER+HIDDENPW+SSL);
             this.conn = DriverManager.getConnection(connectionQuery);
             System.out.println("Connection succeeded");

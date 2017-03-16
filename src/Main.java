@@ -2,6 +2,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 /**
  * Created by Erlend on 13.03.2017.
@@ -11,8 +12,12 @@ public class Main {
     Tool tool;
     LoadDatabase db = null;
     public Main() {
+        System.out.print("Enter MySQL pw: ");
+        Scanner getpw = new Scanner(System.in);
+        String pw = getpw.next();
+
         try {
-            db = new LoadDatabase();
+            db = new LoadDatabase("qqqq");
             db.readFiles();
         } catch (SQLException e) {
             e.printStackTrace();
