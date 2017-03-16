@@ -7,14 +7,14 @@ public class Result {
     private Tool input = new Tool();
     private WorkoutData workoutData = null;
 
-    private String exType = "";
-    private String exLocation = "";
-    private String exName = "";
-    private String description;
-    private String goal;
-    private int workload;
-    private int reps;
-    private int sets;
+    private String exType = "outside";
+    private String exLocation = "Location goes here";
+    private String exName = "Exercise goes here";
+    private String description="No description";
+    private String goal="No goal";
+    private int workload=10;
+    private int reps=8;
+    private int sets=3;
     private int workout_id;
 
     //Category info
@@ -24,27 +24,14 @@ public class Result {
     private String weather;
     private boolean warmup;
 
-    public Result(){
-
-        setCategory();
-        setExName();
-        setDescription();
-        setGoal();
-        setReps();
-        setSets();
-
-//        addWorkoutData();
-
-    }
-
     public Result(int workout_id){
         this.workout_id = workout_id;
-        setCategory();
-        setExName();
-        setDescription();
-        setGoal();
-        setReps();
-        setSets();
+//        setCategory();
+//        setExName();
+//        setDescription();
+//        setGoal();
+//        setReps();
+//        setSets();
 
         addWorkoutData();
     }
@@ -57,6 +44,10 @@ public class Result {
         this.reps = reps;
         this.sets = sets;
         this.workout_id = workout_id;
+    }
+
+    public int getWorkoutID(){
+        return this.workout_id;
     }
 
     public void insert_sql(LoadDatabase db){

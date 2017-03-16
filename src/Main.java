@@ -1,4 +1,6 @@
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +21,7 @@ public class Main {
         try {
             db = new LoadDatabase(pw);
         } catch (SQLException e) {
+            System.out.println("Couldn't load database");
             e.printStackTrace();
         }
         System.out.println("Seed database?(y/n) ");
@@ -56,6 +59,7 @@ public class Main {
         Workout workout = new Workout();
         workout.insert_sql(this.db);
         int currentWorkoutID = workout.getWorkoutID(this.db);
+        workout.setID(currentWorkoutID);
         input = tool.getStringInput("Do you want to add a note?");
         if (input.toLowerCase().equals("yes")||input.toLowerCase().equals("y")) {
             Note note = new Note();
@@ -81,7 +85,7 @@ public class Main {
         sqlwo.fetch(" WHERE workout_date > '" + dateString + "'");
         ArrayList<Workout> workouts = sqlwo.getResults();
         for (Workout workout : workouts) {
-            sqlres.fetch(workout.wo_num);
+            sqlres.fetch(workout.getWorkoutID(this.db));
             ArrayList<Result> results = sqlres.getResults();
             workout.addResults(results);
         }
@@ -100,7 +104,7 @@ public class Main {
         }
         System.out.println("Your best workout was: ");
 //        System.out.println(_maxw);
-        System.out.println(_maxw.getReport());
+        System.out.println(_maxw.getReport(this.db));
         _maxw.toString();
         System.out.println("With a total volume of " + Integer.toString(_max));
     }
@@ -117,7 +121,7 @@ public class Main {
         int total = 0;
         int volume = 0;
         for (Workout workout : workouts) {
-            sqlres.fetch(workout.wo_num);
+            sqlres.fetch(workout.workout_id);
             workout.addResults(sqlres.getResults());
             total += workout.duration;
             volume += workout.getTotal();

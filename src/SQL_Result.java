@@ -34,9 +34,10 @@ public class SQL_Result{
                 int _reps = result.getInt("reps");
                 int _sets = result.getInt("sets");
                 int _workout_no = result.getInt("workout_no");
-                this.results.add(new Result(_description, _goal, _workload, _reps, _sets, _workout_no));
+                this.results.add(new Result(_description, _goal, _workload, _reps, _sets, workout_id));
             }
         } catch (SQLException ex) {
+            System.out.println("Failed to fetch data from results");
             this.db.SQLEx(ex);
         } finally {
             this.db.close();

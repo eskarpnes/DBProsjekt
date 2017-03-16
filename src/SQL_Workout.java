@@ -40,6 +40,7 @@ public class SQL_Workout {
                 this.workouts.add(new Workout(_num, _date, _time, _dur, _shape, _perf));
             }
         } catch (SQLException ex) {
+            System.out.println("Failed to fetch data from workouts");
             this.db.SQLEx(ex);
         } finally {
             this.db.close();
@@ -73,11 +74,11 @@ public class SQL_Workout {
         try {
             this.state = this.db.conn.createStatement();
             ResultSet results = this.state.executeQuery(
-                    "SELECT workout_no FROM workout");
-            int colCount = results.getMetaData().getColumnCount();
-            System.out.println("Current workout ID: "+colCount);
-            return colCount;
+                    "SELECT COUNT(*) FROM workout");
+            results.next();
+            return results.getInt(1);
         } catch (SQLException e) {
+            System.out.println("Failed to get workout ID");
             e.printStackTrace();
             return -1;
         }
