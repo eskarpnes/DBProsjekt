@@ -15,6 +15,7 @@ public class Result {
     private int workload;
     private int reps;
     private int sets;
+    private int workout_id;
 
     //Category info
     private int air_quality;
@@ -36,12 +37,13 @@ public class Result {
 
     }
 
-    public Result(String description, String goal, int workload, int reps, int sets) {
+    public Result(String description, String goal, int workload, int reps, int sets, int workout_id) {
         this.description = description;
         this.goal = goal;
         this.workload = workload;
         this.reps = reps;
         this.sets = sets;
+        this.workout_id = workout_id;
     }
 
     private void addWorkoutData() {

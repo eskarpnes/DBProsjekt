@@ -110,6 +110,8 @@ public class Main {
         int total = 0;
         int volume = 0;
         for (Workout workout : workouts) {
+            sqlres.fetch(workout.id);
+            workout.addResults(sqlres.getResults());
             total += workout.duration;
             volume += workout.getTotal();
         }

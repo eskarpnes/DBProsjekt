@@ -33,7 +33,8 @@ public class SQL_Result {
                 int _workload = result.getInt("workload");
                 int _reps = result.getInt("reps");
                 int _sets = result.getInt("sets");
-                this.results.add(new Result(_description, _goal, _workload, _reps, _sets));
+                int _workout_no = result.getInt("workout_no");
+                this.results.add(new Result(_description, _goal, _workload, _reps, _sets, _workout_no));
             }
         } catch (SQLException ex) {
             this.db.SQLEx(ex);
