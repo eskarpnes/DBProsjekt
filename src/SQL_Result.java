@@ -51,8 +51,8 @@ public class SQL_Result{
         StringBuilder sb = new StringBuilder(0);
         sb.append("insert into result ");
         sb.append("values (null, ");
-        sb.append(descr); sb.append(", ");
-        sb.append(goal); sb.append(", ");
+        sb.append("'"); sb.append(descr); sb.append("', ");
+        sb.append("'"); sb.append(goal); sb.append("', ");
         sb.append(workload); sb.append(", ");
         sb.append(reps); sb.append(", ");
         sb.append(sets); sb.append(", ");

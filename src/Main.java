@@ -65,7 +65,7 @@ public class Main {
         for (int i = 0; i<num; i++) {
             System.out.println("Inputting exercise number " + Integer.toString(i+1));
             Result result = new Result(workout.getWorkoutID());
-            result.insert_sql(this.db);
+            result.insert_sql(this.db,workout.getWorkoutID());
             workout.addResult(result);
         }
     }

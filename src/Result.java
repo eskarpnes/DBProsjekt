@@ -33,12 +33,20 @@ public class Result {
         setReps();
         setSets();
 
-        addWorkoutData();
+//        addWorkoutData();
 
     }
 
     public Result(int workout_id){
         this.workout_id = workout_id;
+        setCategory();
+        setExName();
+        setDescription();
+        setGoal();
+        setReps();
+        setSets();
+
+        addWorkoutData();
     }
 
     public Result(String description, String goal, int workload,
@@ -51,10 +59,10 @@ public class Result {
         this.workout_id = workout_id;
     }
 
-    public void insert_sql(LoadDatabase db){
+    public void insert_sql(LoadDatabase db,int workoutID){
         SQL_Result insertion = new SQL_Result(db);
         insertion.insert(this.description,this.goal,this.workload,
-                this.reps,this.sets,0,this.workout_id);
+                this.reps,this.sets,0,workoutID);
     }
     private void addWorkoutData() {
 

@@ -43,8 +43,8 @@ public class SQL_Note{
         StringBuilder sb = new StringBuilder(0);
         sb.append("insert into note ");
         sb.append("values (null, ");
-        sb.append(purpose); sb.append(", ");
-        sb.append(tips); sb.append(");");
+        sb.append("'"); sb.append(purpose); sb.append("', ");
+        sb.append("'"); sb.append(tips); sb.append("');");
         String sql = sb.toString();
         System.out.println(sql);
         try {
