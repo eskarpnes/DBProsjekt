@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TreningsDatabase:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TreningsDatabase_jar</output-path>
+    <root id="archive" name="TreningsDatabase.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="TreningsDatabase" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/mysql-connector-java-5.1.41-bin.jar" path-in-jar="/" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src" />
+    </root>
+  </artifact>
+</component>

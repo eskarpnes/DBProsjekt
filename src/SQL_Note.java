@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class SQL_Note implements SQL {
+public class SQL_Note{
     LoadDatabase db;
     ResultSet result = null;
     Statement state = null;
@@ -20,7 +20,6 @@ public class SQL_Note implements SQL {
         this.state = db.state;
     }
 
-    @Override
     public void fetch() {
         try {
             state = this.db.conn.createStatement();
@@ -40,13 +39,20 @@ public class SQL_Note implements SQL {
         }
     }
 
-    @Override
-    public void insert(String s) {
+    public void insert(String purpose, String tips) {
+        StringBuilder sb = new StringBuilder(0);
+        sb.append("insert into note ");
+        sb.append("values (null, ");
+        sb.append(purpose); sb.append(", ");
+        sb.append(tips); sb.append(");");
+        String sql = sb.toString();
+        System.out.println(sql);
         try {
             state = this.db.conn.createStatement();
-            String sql = "INSERT INTO note VALUES " + s; // s = "(purpose, tips)"
-            result = state.executeQuery(sql);
+            if (state.executeUpdate(sql)==1)
+                System.out.println("Successfully added query into note");
         } catch (SQLException ex) {
+            System.out.println("Failed adding data into note");
             this.db.SQLEx(ex);
         } finally {
             this.db.close();

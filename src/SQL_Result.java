@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Created by mariasoleim on 15.03.2017.
  */
 
-public class SQL_Result {
+public class SQL_Result{
 
     LoadDatabase db;
     ResultSet result = null;
@@ -43,20 +43,37 @@ public class SQL_Result {
         }
     }
 
-    public void insert(String s) {
+    //insert into result values (null, 'ultrices enim lorem ',
+    // 'embrace ubiquitous e-markets', 18, 11, 8, 25, 17);
+
+    public void insert(String descr, String goal, int workload, int reps,
+                       int sets, int connected_exercise, int current_workout) {
+        StringBuilder sb = new StringBuilder(0);
+        sb.append("insert into result ");
+        sb.append("values (null, ");
+        sb.append(descr); sb.append(", ");
+        sb.append(goal); sb.append(", ");
+        sb.append(workload); sb.append(", ");
+        sb.append(reps); sb.append(", ");
+        sb.append(sets); sb.append(", ");
+        sb.append(connected_exercise); sb.append(", ");
+        sb.append(current_workout); sb.append(");");
+        String sql = sb.toString();
+        System.out.println(sql);
         try {
             state = this.db.conn.createStatement();
-            String sql = "INSERT INTO result VALUES " + s; // s = "(1, 15.03.2017, 15.15, 45, null, null)"
-            result = state.executeQuery(sql);
+            if (state.executeUpdate(sql)==1)
+                System.out.println("Successfully added query into result");
         } catch (SQLException ex) {
+            System.out.println("Failed adding data into result");
             this.db.SQLEx(ex);
         } finally {
             this.db.close();
         }
     }
 
+
     public ArrayList<Result> getResults() {
         return this.results;
     }
-
 }

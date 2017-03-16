@@ -16,7 +16,10 @@ public class Note {
         this.purpose = purpose;
         this.tips = tips;
     }
-
+    public void insert_sql(LoadDatabase db){
+        SQL_Note insertion = new SQL_Note(db);
+        insertion.insert(this.purpose, this.tips);
+    }
     public String getPurpose() {
         return purpose;
     }

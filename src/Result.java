@@ -37,7 +37,12 @@ public class Result {
 
     }
 
-    public Result(String description, String goal, int workload, int reps, int sets, int workout_id) {
+    public Result(int workout_id){
+        this.workout_id = workout_id;
+    }
+
+    public Result(String description, String goal, int workload,
+                  int reps, int sets, int workout_id) {
         this.description = description;
         this.goal = goal;
         this.workload = workload;
@@ -46,6 +51,11 @@ public class Result {
         this.workout_id = workout_id;
     }
 
+    public void insert_sql(LoadDatabase db){
+        SQL_Result insertion = new SQL_Result(db);
+        insertion.insert(this.description,this.goal,this.workload,
+                this.reps,this.sets,0,this.workout_id);
+    }
     private void addWorkoutData() {
 
         int value = input.getIntInput("Do you want do add workout data? 1 = YES, 2 = NO");
@@ -59,9 +69,11 @@ public class Result {
 
     private void setCategory(){
 
-        int locInt = input.getIntInput("Where did you do your workout? 1 = inside, 2 = outside");
+        int locInt = input.getIntInput(
+                "Where did you do your workout? 1 = inside, 2 = outside");
         
-        int typeInt = input.getIntInput("What kind of exercise you do? 1 = cardio, 2 = bodybuilding");
+        int typeInt = input.getIntInput(
+                "What kind of exercise you do? 1 = cardio, 2 = bodybuilding");
 
         if (locInt == 1) {
             this.air_quality = input.getIntInput("How was the air quality? [1-10]");
@@ -108,20 +120,18 @@ public class Result {
 
     private void setWorkload(){
 
-        this.workload = input.getIntInput("Enter workload " + (this.exType.equals("bodybuilding") ? "in kg" : "in km"));
+        this.workload = input.getIntInput(
+                "Enter workload " +
+                        (this.exType.equals("bodybuilding") ? "in kg" : "in km"));
 
     }
 
     private void setReps(){
-
         this.reps = input.getIntInput("How many reps did you do?");
-
     }
 
     private void setSets(){
-
         this.sets = input.getIntInput("How many sets did you do?");
-
     }
 
     public String getExType() {
@@ -163,14 +173,16 @@ public class Result {
     @Override
     public String toString() {
 
-        return ("Description: " + this.description
+        return ("Result{\n"
+                + "Description: " + this.description
                 + '\n' + "Exercise name: " + this.exName
                 + '\n' + "Exercise type: " + this.exType
                 + '\n' + "Exercise location: " + this.exLocation
                 + '\n' + "Goal: " + this.goal
-                + '\n' + "Workload: " + this.workload
+                + '\n' + "Workload: " + Integer.toString(this.workload)
                 + '\n' + "Number of reps: " + Integer.toString(this.reps)
-                + '\n' + "Number of sets: " + Integer.toString(this.sets));
+                + '\n' + "Number of sets: " + Integer.toString(this.sets))
+                + "\n}";
 
     }
 }

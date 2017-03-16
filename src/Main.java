@@ -57,12 +57,16 @@ public class Main {
         workout.insert_sql(this.db);
         input = tool.getStringInput("Do you want to add a note?");
         if (input.toLowerCase().equals("yes")||input.toLowerCase().equals("y")) {
-           workout.addNote();
+            Note note = new Note();
+            note.insert_sql(this.db);
+            workout.addNote(note);
         }
         int num = tool.getIntInput("How many exercises did you do?");
         for (int i = 0; i<num; i++) {
             System.out.println("Inputting exercise number " + Integer.toString(i+1));
-            workout.addResult();
+            Result result = new Result(workout.getWorkoutID());
+            result.insert_sql(this.db);
+            workout.addResult(result);
         }
     }
 
@@ -94,6 +98,8 @@ public class Main {
             }
         }
         System.out.println("Your best workout was: ");
+//        System.out.println(_maxw);
+        System.out.println(_maxw.getReport());
         _maxw.toString();
         System.out.println("With a total volume of " + Integer.toString(_max));
     }

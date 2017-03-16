@@ -59,8 +59,8 @@ public class SQL_Workout {
         System.out.println(sql);
         try {
             state = this.db.conn.createStatement();
-            int res = state.executeUpdate(sql);
-            if (res==1) System.out.println("Successfully added query into workout");
+            if (state.executeUpdate(sql)==1)
+                System.out.println("Successfully added query into workout");
         } catch (SQLException ex) {
             System.out.println("Failed adding data into workout");
             this.db.SQLEx(ex);

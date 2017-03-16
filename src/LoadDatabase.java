@@ -1,7 +1,9 @@
 import com.sun.corba.se.impl.orb.DataCollectorBase;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -43,16 +45,47 @@ public class LoadDatabase {
         }
 
     }
-    public void readFiles(){
-        File directory = new File("./db_testdata");
-        ArrayList<File> files = new ArrayList<>();
-        File[]seed_data = directory.listFiles();
-        for (File file:seed_data){
-            if (file.isFile()){
-                files.add(file);
+    public static File getResourceAsFile(String resourcePath) {
+        try {
+            InputStream in = ClassLoader.getSystemClassLoader().getResourceAsStream(resourcePath);
+            if (in == null) {
+                return null;
             }
+
+            File tempFile = File.createTempFile(String.valueOf(in.hashCode()), ".tmp");
+            tempFile.deleteOnExit();
+
+            try (FileOutputStream out = new FileOutputStream(tempFile)) {
+                //copy stream
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = in.read(buffer)) != -1) {
+                    out.write(buffer, 0, bytesRead);
+                }
+            }
+            return tempFile;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
+    }
+    public void readFiles(){
+//        File directory = new File("./db_testdata");
+        ArrayList<File> files = new ArrayList<>();
+//        File[]seed_data = directory.listFiles();
+//        for (File file:seed_data){
+//            if (file.isFile()){
+//                files.add(file);
+//            }
+//        }
         //            System.out.println(file.getName());
+        files.add(new File("./src/1workout.sql"));
+        files.add(new File("./src/2exercise.sql"));
+        files.add(new File("./src/4note.sql"));
+        files.add(new File("./src/5result.sql"));
+        files.add(new File("./src/6exercdata.sql"));
+        // # TODO get files as system resource stream
+
 
         for (File file:files) {
             try (Stream<String> seed_lines = Files.lines(Paths.get(file.getPath()))) {

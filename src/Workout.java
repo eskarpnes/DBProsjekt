@@ -31,12 +31,17 @@ public class Workout {
         insertion.insert(this._date,this._time,this.duration,this.shape,this.performance);
     }
 
-    public void addNote() {
-        this.note = new Note();
+    public int getWorkoutID(){
+        System.out.println("Retrieving workout #"+Integer.toString(this.wo_num));
+        return this.wo_num;
     }
 
-    public void addResult() {
-        results.add(new Result());
+    public void addNote(Note note) {
+        this.note = note;
+    }
+
+    public void addResult(Result result) {
+        results.add(result);
     }
 
     public void addResults(ArrayList<Result> results) {
@@ -64,11 +69,21 @@ public class Workout {
     @Override
     public String toString() {
         return "Workout{\n" +
-                _date + '\n' +
-                _time + '\n' +
-                duration + '\n'+
-                shape + '\n'+
-                performance +'\n'+
+                "Date: "+_date + '\n' +
+                "Time: "+_time + '\n' +
+                "Duration (in minutes): "+duration + '\n'+
+                "Shape (1-10): "+shape + '\n'+
+                "Performance (1-10): "+performance +'\n'+
                 "}";
+    }
+
+    public String getReport(){
+        StringBuilder sb = new StringBuilder(0);
+        sb.append(this);
+        sb.append("\nIn this workout, you did the following:\n");
+        for (Result r:this.results){
+            sb.append(r); sb.append("\n");
+        }
+        return sb.toString();
     }
 }

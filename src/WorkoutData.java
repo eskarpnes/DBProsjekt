@@ -66,9 +66,11 @@ public class WorkoutData {
 
     @Override
     public String toString() {
-        return ("Time: " + this.time
+        return ("WorkoutData{\n"+
+                "Time: " + this.time
                 + '\n' + "Heart rate: " + Integer.toString(this.heartRate)
                 + '\n' + "Location: longitude " + this.long_coord + ", latitude " + this.lat_coord
-                + '\n' + "MASL: " + Integer.toString(this.masl));
+                + '\n' + "MASL: " + Integer.toString(this.masl))
+                +"\n}";
     }
 }
