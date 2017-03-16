@@ -17,7 +17,7 @@ public class Main {
         String pw = getpw.next();
 
         try {
-            db = new LoadDatabase("qqqq");
+            db = new LoadDatabase(pw);
             db.readFiles();
         } catch (SQLException e) {
             e.printStackTrace();
