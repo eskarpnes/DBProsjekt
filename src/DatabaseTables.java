@@ -101,7 +101,8 @@ public class DatabaseTables {
                 "reps TINYINT NOT NULL," +
                 "sets TINYINT NOT NULL," +
                 "connected_exercise_id INT NOT NULL,"+
-                "FOREIGN KEY (id) REFERENCES workout(workout_no))";
+                "workout_no INT NOT NULL,"+
+                "FOREIGN KEY (workout_no) REFERENCES workout(workout_no))";
         try {
             this.apply(sql);
         } catch (SQLException e) {
