@@ -14,7 +14,7 @@ public class Workout {
 
     public Workout () {
         this._date = tool.getDate(0);
-//        getUserInput();
+        getUserInput();
     }
 
     public Workout(int num, String date, String time, int duration, int shape, int performance) {

@@ -126,9 +126,8 @@ public class Main {
             total += workout.duration;
             volume += workout.getTotal();
         }
-        total = total/60;
-        System.out.println("Total amount of hours: " + total);
-        System.out.println("Total volume: " + volume);
+        System.out.println("Total minutes: " + total);
+        System.out.println("Total volume (sets*reps*workload): " + volume);
     }
 
 

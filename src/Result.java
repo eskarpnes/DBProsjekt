@@ -26,12 +26,12 @@ public class Result {
 
     public Result(int workout_id){
         this.workout_id = workout_id;
-//        setCategory();
-//        setExName();
-//        setDescription();
-//        setGoal();
-//        setReps();
-//        setSets();
+        setCategory();
+        setExName();
+        setDescription();
+        setGoal();
+        setReps();
+        setSets();
 
         addWorkoutData();
     }
